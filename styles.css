@@ -2,104 +2,267 @@
 @media(max-width:1000px){.nav{gap:15px}.service-grid{grid-template-columns:1fr 1fr}.solution-grid{grid-template-columns:1fr 1fr}.about-section,.contact-section{grid-template-columns:1fr}.leadership{grid-template-columns:1fr}.leadership-photo img{height:520px}.process-line{grid-template-columns:1fr 1fr}.stats>div{padding:24px 2vw}.cta-band{align-items:flex-start;flex-direction:column}}
 @media(max-width:760px){.site-header{height:70px;padding:0 5vw}.menu-toggle{display:block}.nav{position:absolute;left:0;right:0;top:70px;background:#050b18;display:none;flex-direction:column;align-items:stretch;padding:15px 5vw 22px;border-bottom:1px solid #22304a}.nav.open{display:flex}.nav a{padding:10px}.hero{min-height:650px}.hero-content{margin-left:5vw;padding-right:5vw}.hero h1{font-size:48px}.trust-row{flex-wrap:wrap}.stats{grid-template-columns:1fr 1fr}.stats>div{border-bottom:1px solid #e7ebf3}.section,.dark-section{padding:75px 5vw}.section-heading{display:block}.section-heading>p{margin-top:22px}.service-grid,.solution-grid{grid-template-columns:1fr}.about-image img{height:330px}.leadership-photo img{height:400px}.leadership-copy{padding:70px 7vw}.process-line{grid-template-columns:1fr}.process-line>div{border-right:0;border-bottom:1px solid #dfe5ef;padding-left:0!important}.cta-band{padding:65px 5vw}.contact-section{gap:50px}.form-grid{grid-template-columns:1fr}.modal-card{margin:2vh 4vw;padding:28px 22px}footer{padding:25px 5vw;flex-direction:column;align-items:flex-start}.footer-brand{margin-bottom:5px}}
 
-/* Neural Network Background */
-.neural-network {
+/* =========================================================
+   FULL SCREEN NEURAL NETWORK
+   ========================================================= */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Full-screen network layer */
+.neural-network-bg {
   position: absolute;
-  right: 5%;
-  top: 50%;
-  width: 420px;
-  height: 420px;
-  transform: translateY(-50%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
   pointer-events: none;
+  overflow: hidden;
+
+  /* Increase/decrease overall visibility here */
+  opacity: 0.75;
+}
+
+/* SVG fills entire hero */
+.neural-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+/* Network connection lines */
+.network-line {
+  stroke-width: 1.2;
+  fill: none;
   opacity: 0.35;
+
+  stroke-dasharray: 5 10;
+
+  animation:
+    lineFlow 5s linear infinite,
+    linePulse 3s ease-in-out infinite;
 }
 
-.node {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: currentColor;
-  animation: networkPulse 2s infinite ease-in-out;
+/* Different colored network lines */
+.network-line.blue {
+  stroke: #00d9ff;
 }
 
-.node-1 { left: 10%; top: 20%; }
-.node-2 { left: 45%; top: 10%; }
-.node-3 { left: 80%; top: 25%; }
-.node-4 { left: 25%; top: 60%; }
-.node-5 { left: 60%; top: 55%; }
-.node-6 { left: 85%; top: 75%; }
-
-.connection {
-  position: absolute;
-  height: 1px;
-  background: currentColor;
-  transform-origin: left center;
-  animation: networkTravel 3s infinite linear;
+.network-line.cyan {
+  stroke: #00fff0;
 }
 
-.connection-1 {
-  width: 150px;
-  left: 13%;
-  top: 22%;
-  transform: rotate(-15deg);
+.network-line.purple {
+  stroke: #a855f7;
 }
 
-.connection-2 {
-  width: 150px;
-  left: 48%;
-  top: 13%;
-  transform: rotate(20deg);
+.network-line.pink {
+  stroke: #ff4fd8;
 }
 
-.connection-3 {
-  width: 170px;
-  left: 28%;
-  top: 61%;
-  transform: rotate(-18deg);
+.network-line.orange {
+  stroke: #ff9d00;
 }
 
-.connection-4 {
-  width: 150px;
-  left: 63%;
-  top: 57%;
-  transform: rotate(25deg);
+.network-line.gradient {
+  stroke: url(#networkGradient);
 }
 
-.connection-5 {
-  width: 210px;
-  left: 14%;
-  top: 23%;
-  transform: rotate(32deg);
+/* Main neural nodes */
+.network-node {
+  stroke-width: 1;
+  animation: nodePulse 2.8s ease-in-out infinite;
 }
 
-@keyframes networkPulse {
-  0%, 100% {
-    transform: scale(1);
-    opacity: 0.5;
+/* Blue */
+.network-node.blue {
+  fill: #00d9ff;
+  stroke: #7df5ff;
+  filter: url(#blueGlow);
+}
+
+/* Cyan */
+.network-node.cyan {
+  fill: #00fff0;
+  stroke: #aafffa;
+  filter: url(#cyanGlow);
+}
+
+/* Purple */
+.network-node.purple {
+  fill: #9d4edd;
+  stroke: #d8a4ff;
+  filter: url(#purpleGlow);
+}
+
+/* Pink */
+.network-node.pink {
+  fill: #ff4fd8;
+  stroke: #ffb4ed;
+  filter: url(#purpleGlow);
+}
+
+/* Orange */
+.network-node.orange {
+  fill: #ff9d00;
+  stroke: #ffd27a;
+  filter: url(#orangeGlow);
+}
+
+/* Traveling AI signals */
+.network-signal {
+  fill: #ffffff;
+  stroke: none;
+  opacity: 0;
+
+  filter:
+    drop-shadow(0 0 5px #00eaff)
+    drop-shadow(0 0 12px #00eaff);
+
+  animation: signalFlash 2.5s ease-in-out infinite;
+}
+
+/* Larger central nodes */
+.network-node.large {
+  r: 7;
+}
+
+/* Small background nodes */
+.network-node.small {
+  r: 3;
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+
+@keyframes nodePulse {
+
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(0.85);
   }
+
   50% {
-    transform: scale(1.8);
+    opacity: 1;
+    transform: scale(1.35);
+  }
+}
+
+
+@keyframes linePulse {
+
+  0%,
+  100% {
+    opacity: 0.12;
+  }
+
+  50% {
+    opacity: 0.55;
+  }
+}
+
+
+@keyframes lineFlow {
+
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+
+@keyframes signalFlash {
+
+  0% {
+    opacity: 0;
+  }
+
+  15% {
     opacity: 1;
   }
+
+  50% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0.2;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
 
-@keyframes networkTravel {
-  0% {
-    opacity: 0.2;
-  }
-  50% {
-    opacity: 0.8;
-  }
-  100% {
-    opacity: 0.2;
-  }
+
+/* =========================================================
+   KEEP YOUR CONTENT ABOVE THE NETWORK
+   ========================================================= */
+
+.hero-content {
+  position: relative;
+  z-index: 5;
 }
+
+
+/* =========================================================
+   EXTRA ATMOSPHERE
+   ========================================================= */
+
+.neural-network-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background:
+    radial-gradient(
+      circle at 20% 30%,
+      rgba(0, 217, 255, 0.08),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 75% 25%,
+      rgba(168, 85, 247, 0.08),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 75%,
+      rgba(255, 79, 216, 0.06),
+      transparent 25%
+    );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
 @media (max-width: 800px) {
-  .neural-network {
-    right: -120px;
-    opacity: 0.2;
-    transform: translateY(-50%) scale(0.75);
+
+  .neural-network-bg {
+    opacity: 0.42;
   }
+
+  .network-line {
+    stroke-width: 1;
+  }
+
+  .network-node.large {
+    r: 5;
+  }
+
 }
