@@ -3,266 +3,508 @@
 @media(max-width:760px){.site-header{height:70px;padding:0 5vw}.menu-toggle{display:block}.nav{position:absolute;left:0;right:0;top:70px;background:#050b18;display:none;flex-direction:column;align-items:stretch;padding:15px 5vw 22px;border-bottom:1px solid #22304a}.nav.open{display:flex}.nav a{padding:10px}.hero{min-height:650px}.hero-content{margin-left:5vw;padding-right:5vw}.hero h1{font-size:48px}.trust-row{flex-wrap:wrap}.stats{grid-template-columns:1fr 1fr}.stats>div{border-bottom:1px solid #e7ebf3}.section,.dark-section{padding:75px 5vw}.section-heading{display:block}.section-heading>p{margin-top:22px}.service-grid,.solution-grid{grid-template-columns:1fr}.about-image img{height:330px}.leadership-photo img{height:400px}.leadership-copy{padding:70px 7vw}.process-line{grid-template-columns:1fr}.process-line>div{border-right:0;border-bottom:1px solid #dfe5ef;padding-left:0!important}.cta-band{padding:65px 5vw}.contact-section{gap:50px}.form-grid{grid-template-columns:1fr}.modal-card{margin:2vh 4vw;padding:28px 22px}footer{padding:25px 5vw;flex-direction:column;align-items:flex-start}.footer-brand{margin-bottom:5px}}
 
 /* =========================================================
-   FULL SCREEN NEURAL NETWORK
+   BEAUTIFUL NEURAL NETWORK BACKGROUND
    ========================================================= */
 
-.hero {
-  position: relative;
-  overflow: hidden;
-}
-
-/* Full-screen network layer */
-.neural-network-bg {
+.neural-network {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
+
+  /* Much larger */
+  right: -2%;
+  top: 50%;
+
+  width: 720px;
+  height: 620px;
+
+  transform: translateY(-50%);
+
   pointer-events: none;
-  overflow: hidden;
 
-  /* Increase/decrease overall visibility here */
-  opacity: 0.75;
+  opacity: 0.85;
+
+  z-index: 1;
+
+  /* Soft atmospheric glow */
+  filter:
+    drop-shadow(0 0 20px rgba(0, 220, 255, 0.08))
+    drop-shadow(0 0 45px rgba(120, 70, 255, 0.08));
 }
 
-/* SVG fills entire hero */
-.neural-svg {
+
+/* =========================================================
+   NEURAL NODES
+   ========================================================= */
+
+.node {
   position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  min-width: 100%;
-  min-height: 100%;
-}
 
-/* Network connection lines */
-.network-line {
-  stroke-width: 1.2;
-  fill: none;
-  opacity: 0.35;
+  width: 13px;
+  height: 13px;
 
-  stroke-dasharray: 5 10;
+  border-radius: 50%;
+
+  background: #00eaff;
+
+  /* Outer glow */
+  box-shadow:
+    0 0 5px #00eaff,
+    0 0 12px #00eaff,
+    0 0 25px rgba(0, 234, 255, 0.8);
 
   animation:
-    lineFlow 5s linear infinite,
-    linePulse 3s ease-in-out infinite;
-}
+    networkPulse 2.4s infinite ease-in-out,
+    nodeFloat 5s infinite ease-in-out;
 
-/* Different colored network lines */
-.network-line.blue {
-  stroke: #00d9ff;
-}
-
-.network-line.cyan {
-  stroke: #00fff0;
-}
-
-.network-line.purple {
-  stroke: #a855f7;
-}
-
-.network-line.pink {
-  stroke: #ff4fd8;
-}
-
-.network-line.orange {
-  stroke: #ff9d00;
-}
-
-.network-line.gradient {
-  stroke: url(#networkGradient);
-}
-
-/* Main neural nodes */
-.network-node {
-  stroke-width: 1;
-  animation: nodePulse 2.8s ease-in-out infinite;
-}
-
-/* Blue */
-.network-node.blue {
-  fill: #00d9ff;
-  stroke: #7df5ff;
-  filter: url(#blueGlow);
-}
-
-/* Cyan */
-.network-node.cyan {
-  fill: #00fff0;
-  stroke: #aafffa;
-  filter: url(#cyanGlow);
-}
-
-/* Purple */
-.network-node.purple {
-  fill: #9d4edd;
-  stroke: #d8a4ff;
-  filter: url(#purpleGlow);
-}
-
-/* Pink */
-.network-node.pink {
-  fill: #ff4fd8;
-  stroke: #ffb4ed;
-  filter: url(#purpleGlow);
-}
-
-/* Orange */
-.network-node.orange {
-  fill: #ff9d00;
-  stroke: #ffd27a;
-  filter: url(#orangeGlow);
-}
-
-/* Traveling AI signals */
-.network-signal {
-  fill: #ffffff;
-  stroke: none;
-  opacity: 0;
-
-  filter:
-    drop-shadow(0 0 5px #00eaff)
-    drop-shadow(0 0 12px #00eaff);
-
-  animation: signalFlash 2.5s ease-in-out infinite;
-}
-
-/* Larger central nodes */
-.network-node.large {
-  r: 7;
-}
-
-/* Small background nodes */
-.network-node.small {
-  r: 3;
-  opacity: 0.7;
-}
-
-
-/* =========================================================
-   ANIMATIONS
-   ========================================================= */
-
-@keyframes nodePulse {
-
-  0%,
-  100% {
-    opacity: 0.45;
-    transform: scale(0.85);
-  }
-
-  50% {
-    opacity: 1;
-    transform: scale(1.35);
-  }
-}
-
-
-@keyframes linePulse {
-
-  0%,
-  100% {
-    opacity: 0.12;
-  }
-
-  50% {
-    opacity: 0.55;
-  }
-}
-
-
-@keyframes lineFlow {
-
-  from {
-    stroke-dashoffset: 0;
-  }
-
-  to {
-    stroke-dashoffset: -100;
-  }
-}
-
-
-@keyframes signalFlash {
-
-  0% {
-    opacity: 0;
-  }
-
-  15% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 1;
-  }
-
-  75% {
-    opacity: 0.2;
-  }
-
-  100% {
-    opacity: 0;
-  }
-}
-
-
-/* =========================================================
-   KEEP YOUR CONTENT ABOVE THE NETWORK
-   ========================================================= */
-
-.hero-content {
-  position: relative;
   z-index: 5;
 }
 
 
 /* =========================================================
-   EXTRA ATMOSPHERE
+   INDIVIDUAL NODE COLORS
    ========================================================= */
 
-.neural-network-bg::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+.node-1 {
+  left: 8%;
+  top: 20%;
 
-  background:
-    radial-gradient(
-      circle at 20% 30%,
-      rgba(0, 217, 255, 0.08),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 75% 25%,
-      rgba(168, 85, 247, 0.08),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 85% 75%,
-      rgba(255, 79, 216, 0.06),
-      transparent 25%
-    );
+  background: #00eaff;
 
-  pointer-events: none;
+  box-shadow:
+    0 0 6px #00eaff,
+    0 0 15px #00eaff,
+    0 0 30px rgba(0, 234, 255, 0.8);
+}
+
+
+.node-2 {
+  left: 42%;
+  top: 9%;
+
+  background: #9b5cff;
+
+  box-shadow:
+    0 0 6px #9b5cff,
+    0 0 15px #9b5cff,
+    0 0 32px rgba(155, 92, 255, 0.8);
+}
+
+
+.node-3 {
+  left: 82%;
+  top: 23%;
+
+  background: #ff4fd8;
+
+  box-shadow:
+    0 0 6px #ff4fd8,
+    0 0 15px #ff4fd8,
+    0 0 32px rgba(255, 79, 216, 0.8);
+}
+
+
+.node-4 {
+  left: 22%;
+  top: 57%;
+
+  background: #00fff0;
+
+  box-shadow:
+    0 0 6px #00fff0,
+    0 0 15px #00fff0,
+    0 0 32px rgba(0, 255, 240, 0.8);
+}
+
+
+.node-5 {
+  left: 58%;
+  top: 51%;
+
+  background: #7c5cff;
+
+  box-shadow:
+    0 0 6px #7c5cff,
+    0 0 15px #7c5cff,
+    0 0 32px rgba(124, 92, 255, 0.8);
+}
+
+
+.node-6 {
+  left: 85%;
+  top: 72%;
+
+  background: #ff9d00;
+
+  box-shadow:
+    0 0 6px #ff9d00,
+    0 0 15px #ff9d00,
+    0 0 32px rgba(255, 157, 0, 0.8);
 }
 
 
 /* =========================================================
-   MOBILE
+   CONNECTIONS
    ========================================================= */
+
+.connection {
+  position: absolute;
+
+  height: 2px;
+
+  transform-origin: left center;
+
+  border-radius: 50px;
+
+  /*
+     Gradient-like luminous line
+  */
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 234, 255, 0),
+      #00eaff,
+      #9b5cff,
+      rgba(255, 79, 216, 0)
+    );
+
+  box-shadow:
+    0 0 5px rgba(0, 234, 255, 0.5),
+    0 0 12px rgba(124, 92, 255, 0.25);
+
+  animation:
+    networkTravel 3.5s infinite ease-in-out;
+
+  z-index: 2;
+}
+
+
+/* =========================================================
+   CONNECTION 1
+   ========================================================= */
+
+.connection-1 {
+  width: 245px;
+
+  left: 11%;
+  top: 22%;
+
+  transform: rotate(-16deg);
+
+  animation-delay: -1s;
+}
+
+
+/* =========================================================
+   CONNECTION 2
+   ========================================================= */
+
+.connection-2 {
+  width: 255px;
+
+  left: 45%;
+  top: 12%;
+
+  transform: rotate(19deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(155, 92, 255, 0),
+      #9b5cff,
+      #ff4fd8,
+      rgba(255, 79, 216, 0)
+    );
+
+  animation-delay: -2s;
+}
+
+
+/* =========================================================
+   CONNECTION 3
+   ========================================================= */
+
+.connection-3 {
+  width: 270px;
+
+  left: 25%;
+  top: 59%;
+
+  transform: rotate(-19deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 255, 240, 0),
+      #00fff0,
+      #00eaff,
+      rgba(0, 234, 255, 0)
+    );
+
+  animation-delay: -0.5s;
+}
+
+
+/* =========================================================
+   CONNECTION 4
+   ========================================================= */
+
+.connection-4 {
+  width: 255px;
+
+  left: 61%;
+  top: 53%;
+
+  transform: rotate(26deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(124, 92, 255, 0),
+      #7c5cff,
+      #ff9d00,
+      rgba(255, 157, 0, 0)
+    );
+
+  animation-delay: -2.5s;
+}
+
+
+/* =========================================================
+   CONNECTION 5
+   ========================================================= */
+
+.connection-5 {
+  width: 340px;
+
+  left: 12%;
+  top: 24%;
+
+  transform: rotate(30deg);
+
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(0, 234, 255, 0),
+      rgba(0, 234, 255, 0.7),
+      rgba(155, 92, 255, 0.8),
+      rgba(255, 79, 216, 0)
+    );
+
+  animation-delay: -1.5s;
+}
+
+
+/* =========================================================
+   EXTRA CONNECTIONS
+   These work with your existing HTML if you add:
+   
+   <div class="connection connection-6"></div>
+   ...
+   ========================================================= */
+
+.connection-6 {
+  width: 220px;
+
+  left: 43%;
+  top: 14%;
+
+  transform: rotate(48deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #00eaff,
+      #7c5cff,
+      transparent
+    );
+
+  animation-delay: -3s;
+}
+
+
+.connection-7 {
+  width: 260px;
+
+  left: 26%;
+  top: 59%;
+
+  transform: rotate(-43deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #00fff0,
+      #9b5cff,
+      transparent
+    );
+
+  animation-delay: -1.8s;
+}
+
+
+.connection-8 {
+  width: 230px;
+
+  left: 59%;
+  top: 53%;
+
+  transform: rotate(10deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #ff4fd8,
+      #ff9d00,
+      transparent
+    );
+
+  animation-delay: -2.8s;
+}
+
+
+/* =========================================================
+   PULSE ANIMATION
+   ========================================================= */
+
+@keyframes networkPulse {
+
+  0%,
+  100% {
+    transform: scale(0.75);
+
+    opacity: 0.45;
+  }
+
+  25% {
+    opacity: 0.75;
+  }
+
+  50% {
+    transform: scale(1.8);
+
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0.8;
+  }
+}
+
+
+/* =========================================================
+   FLOATING MOTION
+   ========================================================= */
+
+@keyframes nodeFloat {
+
+  0% {
+    margin-top: 0;
+  }
+
+  50% {
+    margin-top: -10px;
+  }
+
+  100% {
+    margin-top: 0;
+  }
+}
+
+
+/* =========================================================
+   CONNECTION TRAVEL
+   ========================================================= */
+
+@keyframes networkTravel {
+
+  0% {
+    opacity: 0.12;
+
+    filter:
+      brightness(0.8)
+      blur(0.3px);
+  }
+
+  25% {
+    opacity: 0.55;
+  }
+
+  50% {
+    opacity: 1;
+
+    filter:
+      brightness(1.8)
+      blur(0);
+  }
+
+  75% {
+    opacity: 0.55;
+  }
+
+  100% {
+    opacity: 0.12;
+
+    filter:
+      brightness(0.8)
+      blur(0.3px);
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 1200px) {
+
+  .neural-network {
+    right: -8%;
+
+    width: 620px;
+    height: 560px;
+
+    opacity: 0.65;
+  }
+}
+
 
 @media (max-width: 800px) {
 
-  .neural-network-bg {
-    opacity: 0.42;
+  .neural-network {
+
+    right: -180px;
+
+    top: 55%;
+
+    width: 620px;
+    height: 560px;
+
+    transform:
+      translateY(-50%)
+      scale(0.72);
+
+    opacity: 0.38;
   }
 
-  .network-line {
-    stroke-width: 1;
+  .node {
+    width: 10px;
+    height: 10px;
   }
 
-  .network-node.large {
-    r: 5;
+  .connection {
+    height: 1px;
   }
+}
 
+
+@media (prefers-reduced-motion: reduce) {
+
+  .node,
+  .connection {
+    animation: none;
+  }
 }
